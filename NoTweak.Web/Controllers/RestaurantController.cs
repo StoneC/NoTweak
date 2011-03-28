@@ -27,7 +27,14 @@ namespace NoTweak.Web.Controllers
 
         public ActionResult Details(int id)
         {
-            return View();
+            using (TweakContext tweakcontext = new TweakContext())
+            {
+                var Restaurant = from restaurant in tweakcontext.Restaurants
+                                 where restaurant.ID==id
+                                  select restaurant;
+                Restaurant res = Restaurant.ToList<Restaurant>()[0];
+                return View(res);
+            }
         }
 
         //

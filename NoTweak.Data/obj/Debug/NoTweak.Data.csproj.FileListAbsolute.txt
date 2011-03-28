@@ -1,0 +1,7 @@
+D:\Projects\NoTweak\NoTweak.Data\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\NoTweak\NoTweak.Data\bin\Debug\NoTweak.Data.dll
+D:\Projects\NoTweak\NoTweak.Data\bin\Debug\NoTweak.Data.pdb
+D:\Projects\NoTweak\NoTweak.Data\bin\Debug\NoTweak.Domain.dll
+D:\Projects\NoTweak\NoTweak.Data\bin\Debug\NoTweak.Domain.pdb
+D:\Projects\NoTweak\NoTweak.Data\obj\Debug\NoTweak.Data.dll
+D:\Projects\NoTweak\NoTweak.Data\obj\Debug\NoTweak.Data.pdb
