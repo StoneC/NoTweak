@@ -5,11 +5,19 @@ using System.Web;
 using System.Web.Mvc;
 using NoTweak.Domain;
 using NoTweak.Data;
+using NoTweak.Service;
 
 namespace NoTweak.Web.Controllers
 {
     public class RestaurantController : Controller
     {
+        private readonly IRestaurantService restaurantService;
+
+        public RestaurantController(IRestaurantService restaurantService)
+        {
+            this.restaurantService = restaurantService;
+        }
+
         //
         // GET: /Restaurant/
 
@@ -31,8 +39,8 @@ namespace NoTweak.Web.Controllers
             using (TweakContext tweakcontext = new TweakContext())
             {
                 var Restaurant = from restaurant in tweakcontext.Restaurants
-                                 where restaurant.ID==id
-                                  select restaurant;
+                                 where restaurant.ID == id
+                                 select restaurant;
                 Restaurant res = Restaurant.ToList<Restaurant>()[0];
                 return View(res);
             }
@@ -43,8 +51,9 @@ namespace NoTweak.Web.Controllers
 
         public ActionResult Create()
         {
-            return View();
-        } 
+            Restaurant restautant = new Restaurant();
+            return View(restautant);
+        }
 
         //
         // POST: /Restaurant/Create
@@ -52,21 +61,23 @@ namespace NoTweak.Web.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
+            Restaurant restaurant = new Restaurant();
             try
             {
-                // TODO: Add insert logic here
+                UpdateModel(restaurant);
+                restaurantService.CreateRestaurant(restaurant);
+                return RedirectToAction("Details", new { id = restaurant.ID });
 
-                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(restaurant);
             }
         }
-        
+
         //
         // GET: /Restaurant/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             return View();
@@ -81,7 +92,7 @@ namespace NoTweak.Web.Controllers
             try
             {
                 // TODO: Add update logic here
- 
+
                 return RedirectToAction("Index");
             }
             catch
@@ -92,7 +103,7 @@ namespace NoTweak.Web.Controllers
 
         //
         // GET: /Restaurant/Delete/5
- 
+
         public ActionResult Delete(int id)
         {
             return View();
@@ -107,7 +118,7 @@ namespace NoTweak.Web.Controllers
             try
             {
                 // TODO: Add delete logic here
- 
+
                 return RedirectToAction("Index");
             }
             catch
