@@ -9,3 +9,10 @@ D:\Projects\NoTweak\NoTweak.Web\bin\NoTweak.Service.dll
 D:\Projects\NoTweak\NoTweak.Web\bin\NoTweak.Data.pdb
 D:\Projects\NoTweak\NoTweak.Web\bin\NoTweak.Domain.pdb
 D:\Projects\NoTweak\NoTweak.Web\bin\NoTweak.Service.pdb
+D:\Projects\NoTweak\NoTweak.Web\bin\Microsoft.Practices.Unity.Configuration.dll
+D:\Projects\NoTweak\NoTweak.Web\bin\Microsoft.Practices.Unity.dll
+D:\Projects\NoTweak\NoTweak.Web\bin\Microsoft.Practices.ServiceLocation.dll
+D:\Projects\NoTweak\NoTweak.Web\bin\Microsoft.Practices.Unity.pdb
+D:\Projects\NoTweak\NoTweak.Web\bin\Microsoft.Practices.Unity.xml
+D:\Projects\NoTweak\NoTweak.Web\bin\Microsoft.Practices.Unity.Configuration.pdb
+D:\Projects\NoTweak\NoTweak.Web\bin\Microsoft.Practices.Unity.Configuration.xml
