@@ -28,10 +28,10 @@ namespace NoTweak.Service
         }  
         #region IRestaurantService Members
 
-        public IEnumerable<Restaurant> GetCategories()
+        public IEnumerable<Restaurant> GetRestaurants()
         {
-            var categories = RestaurantRepository.GetAll();
-            return categories;
+            var restaurants = RestaurantRepository.GetAll();
+            return restaurants;
         }
 
         public Restaurant GetRestaurant(int id)
