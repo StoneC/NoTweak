@@ -59,20 +59,14 @@ namespace NoTweak.Web.Controllers
         // POST: /Restaurant/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Restaurant restaurant)
         {
-            Restaurant restaurant = new Restaurant();
-            try
-            {
-                UpdateModel(restaurant);
-                restaurantService.CreateRestaurant(restaurant);
-                return RedirectToAction("Details", new { id = restaurant.ID });
-
-            }
-            catch
+            if (!ModelState.IsValid)
             {
                 return View(restaurant);
             }
+            restaurantService.CreateRestaurant(restaurant);
+            return RedirectToAction("Index");
         }
 
         //
@@ -80,7 +74,8 @@ namespace NoTweak.Web.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View();
+            Restaurant restautant = restaurantService.GetRestaurant(id);
+            return View(restautant);
         }
 
         //
@@ -89,42 +84,24 @@ namespace NoTweak.Web.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            try
+            var restaurant = restaurantService.GetRestaurant(id);
+            if (TryUpdateModel(restaurant))
             {
-                // TODO: Add update logic here
-
+                restaurantService.SaveRestaurant();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Restaurant/Delete/5
-
-        public ActionResult Delete(int id)
-        {
-            return View();
+            else return View(restaurant); 
         }
 
         //
         // POST: /Restaurant/Delete/5
 
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            restaurantService.DeleteRestaurant(id);
+            var restaurants = restaurantService.GetRestaurants();
+            return PartialView("RestaurantList", restaurants);
         }
     }
 }

@@ -51,6 +51,7 @@
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\DishRepository.cs" />
     <Compile Include="Repositories\RestaurantRepository.cs" />
     <Compile Include="TweakContext.cs" />
   </ItemGroup>

@@ -13,6 +13,11 @@
 @Html.TextBox("Address", Model.Address) 
 @Html.ValidationMessage("Address", "*")
 </p>
+<p>
+<label for="Desc">Restaurant Description:</label>
+@Html.TextBox("Desc", Model.Desc) 
+@Html.ValidationMessage("Desc", "*")
+</p>
  
 <p>
 <input type="submit" value="Save"/>

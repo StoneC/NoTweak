@@ -1,17 +1,12 @@
-﻿@{
+﻿@model IEnumerable<NoTweak.Domain.Restaurant>
+@{
     ViewBag.Title = "Restaurant List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using System.Web.Mvc;
 
-<h2>hi, Stone! U r here now!</h2>
-<ul>
-@foreach (var restaurant in Model)
-{
-    <li>
-    <a href="/Restaurant/Details/@restaurant.ID">@restaurant.Name</a>
- </li>
-}
-<li>
-<a href="/Restaurant/Create">Create New Restaurant</a></li>
-</ul>
+<h2>Restaurant List</h2>   
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>   
+   <div id="divRestaurantList">          
+    @Html.Partial("RestaurantList", Model)
+</div>

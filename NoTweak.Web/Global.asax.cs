@@ -4,6 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Microsoft.Practices.Unity;
+using NoTweak.Web.IoC;
+using NoTweak.Data;
+using NoTweak.Service;
+using NoTweak.Data.Infrastructure;
 
 namespace NoTweak.Web
 {
@@ -35,6 +40,21 @@ namespace NoTweak.Web
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+            IUnityContainer container = GetUnityContainer();
+            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+        }
+
+        private IUnityContainer GetUnityContainer()
+        {
+            //Create UnityContainer          
+            IUnityContainer container = new UnityContainer()
+                //.RegisterType<IControllerActivator, CustomControllerActivator>() // No nned to a controller activator
+            .RegisterType<IDatabaseFactory, DatabaseFactory>(new HttpContextLifetimeManager<IDatabaseFactory>())
+            .RegisterType<IUnitOfWork,UnitOfWork>(new HttpContextLifetimeManager<IUnitOfWork>())
+            .RegisterType<IRestaurantRepository, RestaurantRepository>(new HttpContextLifetimeManager<IRestaurantRepository>())
+            .RegisterType<IRestaurantService, RestaurantService>(new HttpContextLifetimeManager<IRestaurantService>());
+
+            return container;
         }
     }
 }
