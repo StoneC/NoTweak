@@ -1,0 +1,34 @@
+﻿@model IEnumerable<NoTweak.Domain.Dish>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Price
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>@item.Name</td>
+        <td>@item.Price</td>
+      <td>
+            @Html.ActionLink("Edit", "Edit", "Dish", new { id = @item.ID }, new { target = "_self" }) |
+            @Html.ActionLink("Details", "Details", "Dish", new { id = item.ID }) |
+            @Ajax.ActionLink("Delete", "DeleteDish", new { id = item.Restaurant.ID, dish = item },
+                new AjaxOptions { Confirm = "Delete Dish?", HttpMethod = "Post",
+                                  UpdateTargetId = "divDishList"
+                }) 
+        </td>
+    </tr>
+}
+
+</table>
+

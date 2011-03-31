@@ -52,8 +52,9 @@ namespace NoTweak.Web
             .RegisterType<IDatabaseFactory, DatabaseFactory>(new HttpContextLifetimeManager<IDatabaseFactory>())
             .RegisterType<IUnitOfWork,UnitOfWork>(new HttpContextLifetimeManager<IUnitOfWork>())
             .RegisterType<IRestaurantRepository, RestaurantRepository>(new HttpContextLifetimeManager<IRestaurantRepository>())
-            .RegisterType<IRestaurantService, RestaurantService>(new HttpContextLifetimeManager<IRestaurantService>());
-
+            .RegisterType<IRestaurantService, RestaurantService>(new HttpContextLifetimeManager<IRestaurantService>())
+            .RegisterType<IDishRepository, DishRepository>(new HttpContextLifetimeManager<IDishRepository>())
+            .RegisterType<IDishService, DishService>(new HttpContextLifetimeManager<IDishService>());
             return container;
         }
     }

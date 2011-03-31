@@ -10,7 +10,7 @@ namespace NoTweak.Service
 {
     public interface IDishService
     {
-        IEnumerable<Dish> GetDishs();
+        IEnumerable<Dish> GetDishes();
         Dish GetDish(int id);
         void CreateDish(Dish Dish);
         void DeleteDish(int id);
@@ -28,7 +28,7 @@ namespace NoTweak.Service
         }
         #region IDishService Members
 
-        public IEnumerable<Dish> GetDishs()
+        public IEnumerable<Dish> GetDishes()
         {
             var Dishes = DishRepository.GetAll();
             return Dishes;

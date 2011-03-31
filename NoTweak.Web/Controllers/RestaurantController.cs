@@ -42,7 +42,8 @@ namespace NoTweak.Web.Controllers
                                  where restaurant.ID == id
                                  select restaurant;
                 Restaurant res = Restaurant.ToList<Restaurant>()[0];
-                return View(res);
+                IList<Dish> dishes = res.Dishes.ToList<Dish>();
+                return View(new RestaurantViewModel(res,dishes));
             }
         }
 
@@ -102,6 +103,14 @@ namespace NoTweak.Web.Controllers
             restaurantService.DeleteRestaurant(id);
             var restaurants = restaurantService.GetRestaurants();
             return PartialView("RestaurantList", restaurants);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteDish(int id,Dish dish)
+        {
+            Restaurant restaurant = restaurantService.GetRestaurant(id);
+            restaurant.Dishes.Remove(dish);
+            return PartialView("RestaurantDishList", restaurant.Dishes);
         }
     }
 }

@@ -1,0 +1,22 @@
+﻿@model NoTweak.Domain.Dish
+
+@{Html.BeginForm();
+
+<fieldset>
+<p>
+<label for="Name">Dish Name:</label>
+@Html.TextBox("Name", Model.Name) 
+@Html.ValidationMessage("Name", "*")
+</p>
+<p>
+<label for="Price">Dish Price:</label>
+@Html.TextBox("Price", Model.Price) 
+@Html.ValidationMessage("Address", "*")
+</p>
+ 
+<p>
+<input type="submit" value="Save"/>
+</p>
+</fieldset>
+    
+  }

@@ -1,19 +1,42 @@
-﻿
+﻿@using NoTweak.Domain;
+@using System.Web.Mvc;
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>  
 
 <h2>Details</h2>
 <table>
 <tr>
-<td>@Model.Name</td>
+<td>@Model.Restaurant.Name</td>
 </tr>
 <tr>
-<td>@Model.Address</td>
+<td>@Model.Restaurant.Address</td>
 </tr>
 <tr>
-<td>@Model.Desc</td>
+<td>@Model.Restaurant.Desc</td>
 </tr>
 </table>
+<h3>Dishes</h3>
+<div id="divDishList">
+<table>
+@foreach (Dish dish in Model.Dishes)
+{
+    <tr>
+    <td>@dish.Name</td>
+    <td>@dish.Price</td>
+      <td>
+            @Html.ActionLink("Edit", "Edit", "Dish", new { id = @dish.ID }, new { target = "_self" }) |
+            @Html.ActionLink("Details", "Details", "Dish", new { id = dish.ID }) |
+            @Ajax.ActionLink("Delete", "DeleteDish", new { id = @Model.Restaurant.ID, dish = dish },
+                new AjaxOptions { Confirm = "Delete Dish?", HttpMethod = "Post",
+                                  UpdateTargetId = "divDishList"
+                }) 
+        </td>
+    </tr>
+}
+</table>
+</div>
+
 
