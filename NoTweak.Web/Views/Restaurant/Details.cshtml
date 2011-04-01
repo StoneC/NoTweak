@@ -19,24 +19,11 @@
 </tr>
 </table>
 <h3>Dishes</h3>
+<p>
+    @Html.ActionLink("Add New Dish", "Create", "Dish", new {restaurant=Model.Restaurant }, new { })
+</p>
 <div id="divDishList">
-<table>
-@foreach (Dish dish in Model.Dishes)
-{
-    <tr>
-    <td>@dish.Name</td>
-    <td>@dish.Price</td>
-      <td>
-            @Html.ActionLink("Edit", "Edit", "Dish", new { id = @dish.ID }, new { target = "_self" }) |
-            @Html.ActionLink("Details", "Details", "Dish", new { id = dish.ID }) |
-            @Ajax.ActionLink("Delete", "DeleteDish", new { id = @Model.Restaurant.ID, dish = dish },
-                new AjaxOptions { Confirm = "Delete Dish?", HttpMethod = "Post",
-                                  UpdateTargetId = "divDishList"
-                }) 
-        </td>
-    </tr>
-}
-</table>
+@Html.Action("ShowDishes", "Dish", new { dishes = Model.Dishes });
 </div>
 
 

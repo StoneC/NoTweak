@@ -176,7 +176,7 @@
     <Content Include="Views\Dish\DishForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Restaurant\RestaurantDishList.cshtml" />
+    <Content Include="Views\Dish\ShowDishes.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

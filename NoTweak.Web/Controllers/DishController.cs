@@ -14,17 +14,24 @@ namespace NoTweak.Web.Controllers
     {
 
         private readonly IDishService dishService;
+        private readonly IRestaurantService restaurantService;
 
-        public DishController(IDishService dishService)
+        public DishController(IDishService dishService, IRestaurantService restaurantService)
         {
             this.dishService = dishService;
+            this.restaurantService = restaurantService;
         }
 
         public ActionResult Index()
         {
 
-                var Dishes = dishService.GetDishes();
-                return View(Dishes.ToList<Dish>());
+            var Dishes = dishService.GetDishes();
+            return View(Dishes.ToList<Dish>());
+        }
+
+        public ActionResult ShowDishes(IList<Dish> dishes)
+        {
+            return View(dishes);
         }
 
 
@@ -43,9 +50,10 @@ namespace NoTweak.Web.Controllers
 
         public ActionResult Create()
         {
+
             Dish dish = new Dish();
             return View(dish);
-        } 
+        }
 
         //
         // POST: /Dish/Create
@@ -60,13 +68,15 @@ namespace NoTweak.Web.Controllers
             dishService.CreateDish(dish);
             return RedirectToAction("Index");
         }
-        
+
         //
         // GET: /Dish/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             Dish dish = dishService.GetDish(id);
+
+            ViewData["Restaurants"] = new SelectList(restaurantService.GetRestaurants(), "ID", "Name",dish.Restaurant);
             return View(dish);
         }
 
@@ -74,18 +84,27 @@ namespace NoTweak.Web.Controllers
         // POST: /Dish/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, string source, FormCollection collection)
         {
+            
             var dish = dishService.GetDish(id);
-            if (TryUpdateModel(dish))
+            ViewData["Restaurants"] = new SelectList(restaurantService.GetRestaurants(), "ID", "Name", dish.Restaurant);
+            try
             {
-                dishService.SaveDish();
-                return RedirectToAction("Index");
+                UpdateModel(dish);
+                
+                    dishService.SaveDish();
+                    return Redirect(source);
+                
+                
             }
-            else return View(dish); 
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-  
+
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

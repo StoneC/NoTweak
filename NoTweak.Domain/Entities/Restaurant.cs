@@ -12,5 +12,7 @@ namespace NoTweak.Domain
         public string Address { get; set; }
         public string Desc { get; set; }
         public virtual ICollection<Dish> Dishes { get; set; }
+
+
     }
 }

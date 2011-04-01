@@ -13,6 +13,11 @@
 @Html.TextBox("Price", Model.Price) 
 @Html.ValidationMessage("Address", "*")
 </p>
+<p>
+<label for="Restaurant">Restaurant:</label>
+@Html.DropDownList("ID", (IEnumerable<SelectListItem>)ViewData["Restaurants"])
+</p>
+
  
 <p>
 <input type="submit" value="Save"/>

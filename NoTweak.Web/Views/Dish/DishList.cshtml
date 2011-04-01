@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<NoTweak.Domain.Dish>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table>
     <tr>
         <th>
@@ -25,9 +23,9 @@
         </td>
 
          <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Ajax.ActionLink("Delete", "Delete", new { id = item.ID },
+            @Html.ActionLink("Edit", "Edit", "Dish", new { id = item.ID,source=@Html.ViewContext.HttpContext.Request.Path}, new { }) |
+            @Html.ActionLink("Details", "Details", "Dish", new { id = item.ID }) |
+            @Ajax.ActionLink("Delete", "Delete", "Dish", new { id = item.ID },
                 new AjaxOptions { Confirm = "Delete Dish?", HttpMethod = "Post",
                                   UpdateTargetId = "divDishList"
                 }) 

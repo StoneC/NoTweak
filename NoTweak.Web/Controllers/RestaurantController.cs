@@ -109,8 +109,8 @@ namespace NoTweak.Web.Controllers
         public ActionResult DeleteDish(int id,Dish dish)
         {
             Restaurant restaurant = restaurantService.GetRestaurant(id);
-            restaurant.Dishes.Remove(dish);
-            return PartialView("RestaurantDishList", restaurant.Dishes);
+            
+            return PartialView("Dish/DishList", restaurant.Dishes);
         }
     }
 }
